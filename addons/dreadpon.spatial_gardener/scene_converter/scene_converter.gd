@@ -45,7 +45,7 @@ const C_1_To_2 = preload('converters/c_1_to_2.gd')
 const C_3_To_4 = preload('converters/c_3_to_4.gd')
 const FunLib = preload("../utility/fun_lib.gd")
 const Gardener = preload("../gardener/gardener.gd")
-const Logger = preload('../utility/logger.gd')
+const CustomLogger = preload('../utility/logger.gd')
 const ConvertDialog_SCN = preload("convert_dialog.tscn")
 
 const number_char_list = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '-']
@@ -209,7 +209,7 @@ func add_scene_file(file_path: String, scenes: Array):
 
 func _run_conversion(in_filepaths: Array, mk_backups: bool = true, out_base_dir: String = '') -> bool:
 	var timestamp = Time.get_datetime_string_from_system(false, true).replace(' ', '_').replace(':', '.')
-	logger = Logger.get_for(self, '', 'user://sg_tscn_conversion_%s.txt' % [timestamp])
+	logger = CustomLogger.get_for(self, '', 'user://sg_tscn_conversion_%s.txt' % [timestamp])
 	
 	logger.info('Found %d valid scenes for conversion' % [in_filepaths.size()])
 	

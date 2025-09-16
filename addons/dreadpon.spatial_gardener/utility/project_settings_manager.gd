@@ -8,7 +8,7 @@
 
 const Globals = preload("globals.gd")
 const FunLib = preload("fun_lib.gd")
-const Logger = preload("logger.gd")
+const CustomLogger = preload("logger.gd")
 
 
 
@@ -143,7 +143,7 @@ static func add_plugin_project_settings():
 	# Saving settings
 	var err: int = ProjectSettings.save()
 	if err:
-		var logger = Logger.get_for_string("ProjectSettingsManager")
+		var logger = CustomLogger.get_for_string("ProjectSettingsManager")
 		logger.error("Encountered error %s when saving project settings" % [Globals.get_err_message(err)])
 
 
