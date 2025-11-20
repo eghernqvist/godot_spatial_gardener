@@ -138,24 +138,33 @@ func restore_after_load(__gardener_root:Node3D, LOD_variants:Array):
 	gardener_root = __gardener_root
 	shared_LOD_variants = LOD_variants
 	
-	# NOTE: Theoretically this would not be needed if we could be sure no outdated OctreeNodes were used
-	#		We can't be because of different Storage Versions
 	max_bounds_to_center_dist = sqrt(pow(extent, 2) * 3)
 	min_bounds_to_center_dist = extent
 	
+	# FIX: Recalculate is_leaf based on actual child_nodes state
+	var should_be_leaf = child_nodes.is_empty()
+	if is_leaf != should_be_leaf:
+		print("FIXING is_leaf corruption at ", get_address(), ": was ", is_leaf, ", should be ", should_be_leaf)
+		set_is_leaf(should_be_leaf)
+	
 	if !is_instance_valid(leaf):
 		leaf = OctreeLeaf.new()
+		leaf.set_octree_node(self)
 	
 	if shared_LOD_variants.size() <= active_LOD_index:
 		_set_active_LOD_index_skip_leaf(shared_LOD_variants.size() - 1)
 	
-	# No need to explicitly call on_active_lod_index_changed, since it's accounted for in restore_after_load
 	leaf.restore_after_load() 
 	_set_active_LOD_index(0, false)
 
-	for child in child_nodes:
-		child.parent = self
-		child.restore_after_load(__gardener_root, LOD_variants)
+	# FIX: Restore child octant values (they're getting corrupted on save)
+	for i in range(child_nodes.size()):
+		child_nodes[i].parent = self
+		# Fix corrupted octant index (should be 0-7, but might be -1 or 255)
+		if child_nodes[i].octant < 0 or child_nodes[i].octant > 7:
+			child_nodes[i].octant = i
+			print("FIXING octant corruption: child ", i, " had invalid octant ", child_nodes[i].octant)
+		child_nodes[i].restore_after_load(__gardener_root, LOD_variants)
 	
 	print_address("", "restored after load")
 
