@@ -4,7 +4,7 @@ extends Node
 
 const GenericUtils = preload("../utility/generic_utils.gd")
 const Global = preload("res://addons/dreadpon.spatial_gardener/utility/globals.gd")
-const CustomLogger = preload("res://addons/dreadpon.spatial_gardener/utility/logger.gd")
+const SGLogger = preload("res://addons/dreadpon.spatial_gardener/utility/sg_logger.gd")
 const FunLib = preload("res://addons/dreadpon.spatial_gardener/utility/fun_lib.gd")
 const UndoRedoInterface = preload("res://addons/dreadpon.spatial_gardener/utility/undo_redo_interface.gd")
 
@@ -22,7 +22,7 @@ signal finished_undo_redo_action(current_action_index)
 
 
 func _init():
-	logger = CustomLogger.get_for(self)
+	logger = SGLogger.get_for(self)
 	dpon_testing_set_undo_redo(UndoRedo.new())
 
 

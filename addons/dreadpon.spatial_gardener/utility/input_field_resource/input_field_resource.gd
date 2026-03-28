@@ -16,7 +16,7 @@ extends Resource
 enum PropActionLifecycle {BEFORE_DO, AFTER_DO, AFTER_UNDO}
 
 
-const CustomLogger = preload("../logger.gd")
+const SGLogger = preload("../sg_logger.gd")
 const FunLib = preload("../fun_lib.gd")
 
 const PropAction = preload("prop_action.gd")
@@ -77,7 +77,7 @@ signal prop_list_changed(prop_names)
 func _init():
 	set_meta("class", "InputFieldResource")
 	resource_name = "InputFieldResource"
-	logger = CustomLogger.get_for(self)
+	logger = SGLogger.get_for(self)
 	FunLib.ensure_signal(self.prop_action_executed, _on_prop_action_executed)
 
 
