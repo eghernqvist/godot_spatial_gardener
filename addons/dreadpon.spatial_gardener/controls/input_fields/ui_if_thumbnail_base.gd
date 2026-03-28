@@ -293,10 +293,11 @@ func _get_resource_path_for_resource(resource:Resource):
 # Callback to assign a thumbnail after it was generated
 func try_assign_to_thumbnail(path:String, preview:Texture2D, thumbnail_preview:Texture2D, userdata: Dictionary):
 	if !is_node_ready(): return
+	var display_name = path.get_file()
+	if userdata.thumb_res and userdata.thumb_res.resource_name != "":
+		display_name = userdata.thumb_res.resource_name
+
 	if preview:
-		userdata.thumb.set_thumbnail(preview)
+		userdata.thumb.set_thumbnail(preview, display_name)
 	else:
-		var alt_name = path.get_file()
-		if userdata.thumb_res:
-			alt_name = userdata.thumb_res.resource_name
-		userdata.thumb.set_alt_text(alt_name)
+		userdata.thumb.set_alt_text(display_name)

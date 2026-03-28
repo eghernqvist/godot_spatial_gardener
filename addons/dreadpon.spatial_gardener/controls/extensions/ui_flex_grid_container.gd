@@ -43,6 +43,9 @@ func on_resized():
 
 
 func recalc_columns():
+	if columns == 1:
+		return
+
 	var target_size := get_parent_area_size()
 	var factual_size := size
 	

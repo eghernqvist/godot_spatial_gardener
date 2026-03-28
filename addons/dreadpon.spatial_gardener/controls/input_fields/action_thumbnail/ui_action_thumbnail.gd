@@ -44,9 +44,9 @@ var default_button_sizes: Dictionary = {}
 @export var new_texture: Texture2D = null
 @export var options_texture: Texture2D = null
 
-var def_rect_size: Vector2 = Vector2(100.0, 100.0)
+var def_rect_size: Vector2 = Vector2(0.0, 46.0)
 var def_button_size: Vector2 = Vector2(24.0, 24.0)
-var def_max_title_chars: int = 8
+var def_max_title_chars: int = 20
 
 signal requested_delete
 signal requested_set_dialog
@@ -85,7 +85,6 @@ func _ready():
 		texture_rect_nd.visible = true
 	if has_node("%SelectionPanel"):
 		selection_panel_nd = %SelectionPanel
-		selection_panel_nd.theme_type_variation = "ActionThumbnail_SelectionPanel"
 		selection_panel_nd.visible = false
 	if has_node("%CheckBox"):
 		check_box_nd = %CheckBox
@@ -112,12 +111,11 @@ func _ready():
 		default_button_sizes[menu_button_nd] = menu_button_nd.size
 
 	if counter_label_nd:
-		counter_label_nd.add_theme_font_size_override("font_size", Label_font_size / 1.5)
+		counter_label_nd.add_theme_font_size_override("font_size", Label_font_size)
 	if label_line_edit_nd:
-		# Prevent overdraw when the rect size is small
-		label_line_edit_nd.add_theme_font_size_override("font_size", Label_font_size / 2)
+		label_line_edit_nd.add_theme_font_size_override("font_size", Label_font_size)
 	if alt_text_label_nd:
-		alt_text_label_nd.add_theme_font_size_override("font_size", Label_font_size / 2)
+		alt_text_label_nd.add_theme_font_size_override("font_size", Label_font_size)
 
 	update_size()
 	set_active_interaction_flags(active_interaction_flags)
@@ -152,8 +150,9 @@ func update_size():
 	if !is_node_ready():
 		return
 
-	var thumb_rect = Vector2(thumb_size, thumb_size)
-	custom_minimum_size = thumb_rect
+	var row_height = max(thumb_size * 0.4, 46)
+	custom_minimum_size = Vector2(140, row_height)
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 
 func set_counter_val(val: int):
@@ -272,19 +271,24 @@ func on_delete():
 #-------------------------------------------------------------------------------
 
 
-func trim_text(text: String, length: int = 8) -> String:
+func trim_text(text: String, length: int = 20) -> String:
 	if text.length() <= length:
 		return text
 
 	return text.substr(0, length - 3) + "..."
 
 
-func set_thumbnail(texture: Texture2D):
+func set_thumbnail(texture: Texture2D, display_name: String = ""):
 	texture_rect_nd.visible = true
-	alt_text_label_nd.visible = false
-
 	texture_rect_nd.texture = texture
-	alt_text_label_nd.text = ""
+
+	var has_label = is_instance_valid(label_line_container_nd) and label_line_container_nd.visible
+	if display_name != "" and not has_label and is_instance_valid(alt_text_label_nd):
+		alt_text_label_nd.visible = true
+		alt_text_label_nd.text = display_name
+	elif is_instance_valid(alt_text_label_nd):
+		alt_text_label_nd.visible = false
+		alt_text_label_nd.text = ""
 
 
 func set_alt_text(alt_text: String):
@@ -294,5 +298,5 @@ func set_alt_text(alt_text: String):
 	alt_text_label_nd.visible = true
 	texture_rect_nd.visible = false
 
-	alt_text_label_nd.text = trim_text(alt_text)
+	alt_text_label_nd.text = alt_text
 	texture_rect_nd.texture = null

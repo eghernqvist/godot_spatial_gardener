@@ -35,9 +35,11 @@ func _init(__init_val, __labelText:String = "NONE", __prop_name:String = "", set
 	scroll_intermediary = ScrollContainer.new()
 	scroll_intermediary.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll_intermediary.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll_intermediary.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll_intermediary.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	
 	flex_grid = UI_FlexGridContainer.new()
+	flex_grid.columns = 1
+	flex_grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
 	scroll_intermediary.add_child(flex_grid)
 	container_box.add_child(scroll_intermediary)

@@ -24,7 +24,7 @@ func _init(__init_val, __labelText:String = "NONE", __prop_name:String = "", set
 	set_meta("class", "UI_IF_ThumbnailObject")
 	
 	_thumb = _generate_thumbnail()
-	_thumb.size_flags_horizontal = SIZE_EXPAND
+	_thumb.size_flags_horizontal = SIZE_EXPAND_FILL
 	container_box.add_child(_thumb)
 
 
