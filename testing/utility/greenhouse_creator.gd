@@ -7,7 +7,7 @@ const Greenhouse = preload("res://addons/dreadpon.spatial_gardener/greenhouse/gr
 const Toolshed = preload("res://addons/dreadpon.spatial_gardener/toolshed/toolshed.gd")
 const PlantUtils = preload("plant_utils.gd")
 const GenericUtils = preload("generic_utils.gd")
-const Logger = preload("res://addons/dreadpon.spatial_gardener/utility/logger.gd")
+const SGLogger = preload("res://addons/dreadpon.spatial_gardener/utility/sg_logger.gd")
 const Globals = preload("res://addons/dreadpon.spatial_gardener/utility/globals.gd")
 const FunLib = preload("res://addons/dreadpon.spatial_gardener/utility/fun_lib.gd")
 
@@ -27,7 +27,7 @@ var logger = null
 func _init():
 	greenhouses = []
 	toolsheds = []
-	logger = Logger.get_for(self)
+	logger = SGLogger.get_for(self)
 
 
 func set_greenhouses(val):

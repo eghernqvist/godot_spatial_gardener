@@ -9,7 +9,7 @@ extends EditorPlugin
 #-------------------------------------------------------------------------------
 
 
-const Logger = preload("utility/logger.gd")
+const SGLogger = preload("utility/sg_logger.gd")
 const Globals = preload("utility/globals.gd")
 const FunLib = preload("utility/fun_lib.gd")
 const ProjectSettingsManager = preload("utility/project_settings_manager.gd")
@@ -74,7 +74,7 @@ func _ready():
 	
 	if !Engine.is_editor_hint(): return
 	
-	logger = Logger.get_for(self)
+	logger = SGLogger.get_for(self)
 
 	if Engine.is_editor_hint():
 		undo_redo = get_undo_redo()
