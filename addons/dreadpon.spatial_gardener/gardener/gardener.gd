@@ -490,11 +490,16 @@ func set_garden_work_directory(val):
 	garden_work_directory = val
 	
 	if !Engine.is_editor_hint(): return
-	# If we changed a directory, reload everything that resides there
+	# Defer heavy work to avoid running it inside the undo/redo commit,
+	# which crashes the debugger property-change callback (invalid StringName)
 	if changed:
-		if is_inside_tree():
-			reload_resources()
-		validate_initialized_for_edit()
+		_on_garden_work_directory_changed.call_deferred()
+
+
+func _on_garden_work_directory_changed():
+	if is_inside_tree():
+		reload_resources()
+	validate_initialized_for_edit()
 
 
 func set_initialized_for_edit(val):
