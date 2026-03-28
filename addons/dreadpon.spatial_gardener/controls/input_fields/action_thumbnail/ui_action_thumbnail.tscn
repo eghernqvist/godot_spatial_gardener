@@ -53,41 +53,18 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_sj7sv"]
 image = SubResource("Image_sbj0x")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jixsw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb883"]
 content_margin_left = 6.0
 content_margin_top = 5.0
 content_margin_right = 6.0
 content_margin_bottom = 5.0
 bg_color = Color(0.147, 0.168, 0.203, 1)
-border_color = Color(0.1155, 0.132, 0.1595, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 3
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_078kf"]
-content_margin_left = 6.0
-content_margin_top = 5.0
-content_margin_right = 6.0
-content_margin_bottom = 5.0
-bg_color = Color(0.128625, 0.147, 0.177625, 1)
-border_color = Color(0.1155, 0.132, 0.1595, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 3
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hr20n"]
-content_margin_left = 6.0
-content_margin_top = 5.0
-content_margin_right = 6.0
-content_margin_bottom = 5.0
-bg_color = Color(1, 1, 1, 0.11)
-border_color = Color(1, 1, 1, 0.05)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.73, 0.98, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -109,18 +86,41 @@ corner_radius_bottom_left = 3
 corner_detail = 3
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb883"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hr20n"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.11)
+border_color = Color(1, 1, 1, 0.05)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_078kf"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0.128625, 0.147, 0.177625, 1)
+border_color = Color(0.1155, 0.132, 0.1595, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jixsw"]
 content_margin_left = 6.0
 content_margin_top = 5.0
 content_margin_right = 6.0
 content_margin_bottom = 5.0
 bg_color = Color(0.147, 0.168, 0.203, 1)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.44, 0.73, 0.98, 1)
+border_color = Color(0.1155, 0.132, 0.1595, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -185,7 +185,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"PlantTitleLineEdit"
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 placeholder_text = "Plant Label"
 alignment = 1
 script = ExtResource("3")
@@ -206,6 +206,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="TextureRect" type="TextureRect" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
@@ -213,11 +214,10 @@ stretch_mode = 5
 
 [node name="AltTextLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "Alt text Label"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -236,18 +236,18 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 focus_mode = 2
 theme_type_variation = &"MenuButton"
-theme_override_colors/font_color = Color(0.8025, 0.81, 0.8225, 1)
-theme_override_colors/font_pressed_color = Color(0.44, 0.73, 0.98, 1)
-theme_override_colors/font_hover_color = Color(0.90125, 0.905, 0.91125, 1)
-theme_override_colors/font_focus_color = Color(0.90125, 0.905, 0.91125, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.35)
+theme_override_colors/font_hover_color = Color(0.90125, 0.905, 0.91125, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0.8025, 0.81, 0.8225, 1)
+theme_override_colors/font_focus_color = Color(0.90125, 0.905, 0.91125, 1)
+theme_override_colors/font_pressed_color = Color(0.44, 0.73, 0.98, 1)
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_jixsw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_078kf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hr20n")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_shaa3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_lb883")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_shaa3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hr20n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_078kf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jixsw")
 icon = SubResource("ImageTexture_sj7sv")
 icon_alignment = 1
 
@@ -257,12 +257,12 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="BottomButtonLayout" type="HBoxContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout"]
+z_index = 1
 layout_mode = 2
 mouse_filter = 2
 
 [node name="CheckBox" type="CheckBox" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
@@ -274,12 +274,11 @@ mouse_filter = 2
 
 [node name="CounterLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 9
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 10
 text = "123"
 horizontal_alignment = 2
 vertical_alignment = 2
