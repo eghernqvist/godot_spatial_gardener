@@ -526,7 +526,7 @@ func update_LODs():
 	var manager_size = octree_managers.size()
 	mutex_octree.unlock()
 	
-	if camera_valid:
+	if camera_valid and gardener_root:
 		mutex_LOD_update_meta.lock()
 		var camera_pos = camera_to_use.global_transform.origin
 		mutex_LOD_update_meta.unlock()
